@@ -1,0 +1,24 @@
+<!DOCTYPE html>  <html>  
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1976d2">
+<link rel="icon" href="192.png">
+  <title>Test JS con Eruda</title>  
+</head>  
+<body>  
+  <h2>Prueba de JavaScript con Eruda (CDN)</h2>    <button onclick="document.body.style.backgroundColor='lightblue'">  
+    Cambiar color  
+  </button>  <button onclick="alert('¡Alerta funcionando!')">Mostrar alerta</button>
+
+  <script>  
+    console.log("✅ JavaScript funcionando en WebView");  
+    alert("Hola, tu WebView tiene JavaScript activo 🎉");  
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('Service Worker registrado ✅'))
+      .catch(err => console.log('Error al registrar Service Worker:', err));
+  }
+</script>
+  </script>    <!-- Eruda desde CDN -->    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>    <script>eruda.init();</script>  </body>  
+</html>
