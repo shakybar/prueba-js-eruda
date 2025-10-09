@@ -9,10 +9,33 @@
   <link rel="icon" href="192.png">
   <link rel="apple-touch-icon" href="192.png">
   <title>Test JS con Eruda</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    #offlineBanner {
+      display: none;
+      background: #c0392b;
+      color: white;
+      padding: 8px;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9999;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
+  <div id="offlineBanner">🚫 Estás sin conexión. Mostrando contenido en modo offline.</div>
+
   <h2>Prueba de JavaScript con Eruda (CDN)</h2>
-  
+
   <button onclick="document.body.style.backgroundColor='lightblue'">Cambiar color</button>
   <button onclick="alert('¡Alerta funcionando!')">Mostrar alerta</button>
 
@@ -20,6 +43,7 @@
     console.log("✅ JavaScript funcionando en WebView");
   </script>
 
+  <!-- Registrar Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js')
@@ -28,8 +52,26 @@
     }
   </script>
 
+  <!-- Mostrar banner de modo offline -->
+  <script>
+    function updateOnlineStatus() {
+      const banner = document.getElementById('offlineBanner');
+      if (navigator.onLine) {
+        banner.style.display = 'none';
+        console.log("📡 Conexión restaurada.");
+      } else {
+        banner.style.display = 'block';
+        console.log("🚫 Sin conexión. Mostrando versión offline.");
+      }
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+  </script>
+
   <!-- Eruda desde CDN -->
   <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script>eruda.init();</script>
+
 </body>
 </html>
