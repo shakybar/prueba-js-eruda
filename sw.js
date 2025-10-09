@@ -1,10 +1,10 @@
 const CACHE_NAME = 'v1';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/192.png',
-  '/512.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './192.png',
+  './512.png'
 ];
 
 // Instalación: cachear archivos
@@ -38,7 +38,7 @@ self.addEventListener('fetch', event => {
       return fetch(event.request).catch(() => {
         // Si es navegación y no hay conexión, devolver index.html
         if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
+          return caches.match('./index.html');
         }
       });
     })
